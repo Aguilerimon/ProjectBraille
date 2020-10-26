@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProjectBraille</class>
+ <widget class="QDialog" name="ProjectBraille">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>382</width>
+    <height>242</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Project Braille</string>
+  </property>
+  <widget class="QPushButton" name="pBtn">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>200</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Convertir</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtEdit1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>341</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtEdit2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>341</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
