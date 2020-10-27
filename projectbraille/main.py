@@ -1,22 +1,40 @@
 import sys
 import braille
-from PySide2.QtUiTools import QUiLoader
-from PySide2.QtWidgets import QApplication, QDialog
-from PySide2.QtCore import QFile
+from UI_Principal import Ui_MainWindow
+from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2.QtCore import QObject, QRectF, Qt
+from PySide2.QtWidgets import QMainWindow, QFileDialog, QWidget, QVBoxLayout, QGraphicsScene, QGraphicsView
+from PySide2.QtGui import QPixmap
 
-class uiprincipal ():
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
-        super(uiprincipal, self).__init__()
-        self.ui = QUiLoader().load(QFile("UI_Principal.ui")) 
-        self.ui.pBtn.clicked.connect(self.traducirTexto)
+        Ui_MainWindow.__init__(self)
+        QMainWindow.__init__(self)
+
+        # Inicializa la Interfaz
+        self.setupUi(self)
+
+        # Eventos de los botones ligados a sus correspondientes clases
+        self.pBtn.clicked.connect(self.traducirTexto)
+        self.pBtnImagen.clicked.connect(self.abrirImagen)
     
+    # Clase traduccion de una cadena de texto a una cade en braille
     def traducirTexto(self):
-        texto = self.ui.txtEdit1.toPlainText()
+        texto = self.txtEdit1.toPlainText()
         textoBraille = braille.textToBraille(texto)
-        self.ui.txtEdit2.setPlainText(textoBraille)
+        self.txtEdit2.setPlainText(textoBraille)
+
+    def tr(self, text):
+        return QObject.tr(self, text)
+
+    def abrirImagen(self):
+        imagen = QFileDialog.getOpenFileName(self, self.tr("Load Image"), self.tr("~/Desktop/"), self.tr("Images (*.jpg *.png)"))
+        # self.label.setPixmap(QPixmap(imagen).scaled(40,40,Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        self.label.setPixmap(QtGui.QPixmap("imagen"))
+
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    myapp= uiprincipal()
-    myapp.ui.show()
+    app = QtWidgets.QApplication(sys.argv)
+    main_window = MainWindow()
+    main_window.show()
     sys.exit(app.exec_())
